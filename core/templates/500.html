@@ -1,0 +1,7 @@
+{% load settings_tags %}
+
+{% settings MEDIA_URL%}
+
+{% if MEDIA_URL%}
+  My MEDIA_URL is: {{ MEDIA_URL }}
+{% endif %}

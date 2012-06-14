@@ -1,0 +1,96 @@
+
+body, html {
+  background: #EFEFEF;
+}
+
+#header {
+  border-color: #555152;
+  
+}
+
+.repo a:link {
+  color: #0A0310;
+}
+
+.repo a:visited {
+  color: #0A0310;
+}
+
+.repo b {
+  color: #5E454C;
+}
+
+#content-title {
+  background-color: #EFEFEF;
+  color: #220;
+  border-bottom: 0.2em solid;
+  padding-bottom: 0.3em;
+  border-color: #3F3F3F;
+}
+
+#content-title h2 a {
+  color: #220;
+}
+
+#nav {
+  background: #555152;
+  border-color: #1A1B1C;
+}
+
+.nav:link {
+  color: #F7B4C7;
+}
+
+.nav:visited {
+  color: #F7B4C7;
+}
+
+.active {
+  color: #F56991 !important;
+}
+
+A:link {
+  color: #574759;
+}
+
+A:visited{
+  color: #574759;
+}
+
+#wrapper {
+  color: #220;
+  font: arial;
+  font-family: sans-serif;
+  font-size: 0.9em;
+}
+
+#left-sidebar {
+  background-color: #FFF;
+}
+
+#main {
+  background-color: #FFF;
+}
+
+#right-sidebar {
+  background-color: #FFF;
+}
+
+.sidebar-item {
+  border-color: #51425F;
+}
+
+h3 {
+  color: #0A0310;
+}
+
+.date {
+  color: #49395E;
+}
+
+#footer {
+  color: #FFFDE3;
+  background: #555152;
+  border-color: #1A1B1C;
+}
+

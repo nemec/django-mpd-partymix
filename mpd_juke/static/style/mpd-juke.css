@@ -1,0 +1,78 @@
+#juke {
+  margin: 1em;
+}
+
+#query {
+  width: 100%;
+  margin-top: 3em;
+}
+
+#juke #nowplaying {
+  float: left;
+  width: 48%;
+  overflow: hidden;
+}
+
+#juke #nextsong {
+  float: right;
+  width: 48%;
+  overflow: hidden;
+}
+
+#juke div b {
+  font-size: x-large;
+  color: #1B112C;
+}
+
+#juke div p {
+  font-size: large;
+  color: #493B4C;
+  text-indent: -2em;
+  margin: 0;
+  margin-left: 2em;
+}
+
+#search-list {
+  overflow: hidden;
+  white-space: nowrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#search-list li {
+  padding: 0.2em 0.3em;
+  margin: 0.2em 0;
+}
+
+#search-list li:nth-child(even) {
+  background-color: #C9C7BA;
+}
+
+#search-list li:nth-child(odd) {
+  background-color: #D3BDA5;
+}
+
+#search-list li:hover {
+  background-color: #1B112C;
+  color: #B1A28F;
+  cursor:pointer;
+}
+
+#search-list .title,
+#nowplaying .title,
+#nextsong .title {
+  font-weight: bold;
+}
+
+#search-list .artist,
+#nowplaying .artist,
+#nextsong .artist {
+  font-style: italic;
+}
+
+#search-list .album,
+#nowplaying .album,
+#nextsong .album {
+  font-style: italic;
+}

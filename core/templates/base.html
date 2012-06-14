@@ -1,0 +1,67 @@
+{% load tags %}
+{% load capture %}
+{% load url from future %}
+
+{% url "index" as index %}
+{% url "projects" as projects %}
+{% url "blog" as blog %}
+{% url "about" as about %}
+
+{% capture content_title %}{% block content_title %}{% endblock %}{% endcapture %}
+
+{% capture page_title %}{% block title %}{% endblock %}{% endcapture %}
+
+
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}style/style.css?34s" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}style/theme-white.css" />
+    <link rel="publisher" href="https://plus.google.com/101363865895447068906" />
+    <script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.tree.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}scripts/bindings.js"></script>
+    <title>nem.ec{% if page_title %} - {{ page_title }}{% endif %}</title>
+    {% block header %} {% endblock %}
+  </head>
+
+  <body>
+    <div id="header">
+      <div id="logo">
+        <a href="/">
+          <img src="{{ STATIC_URL }}logos/nem_ec_logo.png">
+        </a>
+      </div>
+      {% if content_title %}
+        <div id="content-title">
+          {{ content_title }}
+        </div>
+      {% endif %}
+    </div>
+    <div id="nav">
+      <ul>
+        <!--<li><a class="nav {% active request index %}" href="{{ index }}">Home</a></li>-->
+        <li><a class="nav {% active request blog %}" href="{{ blog }}">Blog</a></li>
+        <li><a class="nav {% active request projects %}" href="{{ projects }}">Projects</a></li>
+        <li><a class="nav {% active request about %}" href="{{ about }}">About</a></li>
+      </ul>
+    </div>
+    <div id="wrapper">
+      <div id="left-sidebar" class="column">
+        {% block left-sidebar %}{% endblock %}
+      </div>
+
+      <div id="main" class="column">
+        {% block content %}
+        {% endblock %}
+      </div>
+      
+      <div id="right-sidebar" class="column">
+        {% block right-sidebar %}{% endblock %}
+      </div>
+    </div>
+    <div id="footer">
+        &copy;2012 Daniel Nemec
+    </div>
+  </body>
+</html>
+

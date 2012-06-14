@@ -1,0 +1,28 @@
+/* Based on:
+ * http://www.colourlovers.com/palette/885582/100LoversOfWinter
+ */
+
+body, html {
+  background: #FFE8EF;
+}
+
+#header {
+  border-color: #211E2A;
+  
+}
+
+#nav {
+  background: #ED5887;
+  border-color: #C22557;
+}
+
+.active {
+  color: #fff;
+}
+
+#footer {
+  color: #fff;
+  background: #39324D;
+  border-color: #504375;
+}
+

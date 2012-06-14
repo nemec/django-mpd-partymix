@@ -1,0 +1,9 @@
+*~
+*.pyc
+*.pyo
+build/
+dist/
+settings/local.py
+*.sqlite
+*.log
+activate
