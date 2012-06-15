@@ -1,7 +1,23 @@
-
+rot = null;
 $(document).ready(function(){
 
   var UPDATE_INTERVAL = 5000;
+  var transitioning = false;
+  
+  function rotateSongs(cb){
+    transitioning = true;
+    $("#juke p.nowplaying").fadeOut("slow", function(){
+      $(this).remove();  // Remove the old Now Playing
+      $("#juke p.nextsong").animateFloat({float: "left"}, 1000, function(){  // Move Next Up to Now Playing area
+        $("#juke p.nextsong").addClass("nowplaying").removeClass("nextsong");
+        $("<p></p>").addClass("nextsong")
+          .hide().appendTo("#juke .ticker")
+          .fadeIn("slow", cb);
+          transitioning = false;
+      });
+    });
+  }
+  rot = rotateSongs;
   
   function buildSongElement(song){
     var item = '<span class="title">' + song.title + '</span>';
@@ -76,6 +92,11 @@ $(document).ready(function(){
   }, 100);
   
   function updateNowPlaying(){
+    if(transitioning) return;
+    
+    var nowplaying = null;
+    var nextsong = null;
+    
     $.ajax({
       url: API_BASE + "status",
       dataType: "json",
@@ -84,9 +105,15 @@ $(document).ready(function(){
         if(data && data.songid){
           $.ajax({
             url: API_BASE + "playlistid?args=" + data.songid,
+            async: false,
             success: function(songinfo){
-              if(!songinfo.error && songinfo.data && songinfo.data.length > 0){
-                $("#juke #nowplaying p").html(buildSongElement(songinfo.data[0]));
+              if(songinfo.error){
+                console.log(songinfo.error);
+                return;
+              }
+              if(songinfo.data && songinfo.data.length > 0){
+                //$("#juke p.nowplaying").html(buildSongElement(songinfo.data[0]));
+                nowplaying = $(buildSongElement(songinfo.data[0]));
               }
             }
           });
@@ -94,13 +121,33 @@ $(document).ready(function(){
         if(data && data.nextsongid){
           $.ajax({
             url: API_BASE + "playlistid?args=" + data.nextsongid,
+            async: false,
             success: function(songinfo){
-              if(!songinfo.error && songinfo.data && songinfo.data.length > 0){
-                $("#juke #nextsong p").html(buildSongElement(songinfo.data[0]));
+              if(songinfo.error){
+                console.log(songinfo.error);
+                return;
+              }
+              if(songinfo.data && songinfo.data.length > 0){
+                //$("#juke p.nextsong").html(buildSongElement(songinfo.data[0]));
+                nextsong = $(buildSongElement(songinfo.data[0]));
               }
             }
           });
         }
+        
+        // Next Song is now the Current Song, so animate
+        if($("#juke p.nextsong .title").text() == nowplaying.filter(".title").text()){
+          rotateSongs(function(){
+            $("#juke p.nextsong").html(nextsong);
+          });
+        }
+        // Something else has changed
+        else if($("#juke p.nowplaying .title").text() != nowplaying.filter(".title").text() ||
+          $("#juke p.nextsong .title").text() != nextsong.filter(".title").text()){
+          $("#juke p.nowplaying").html(nowplaying);
+          $("#juke p.nextsong").html(nextsong);
+        }
+        
         setTimeout(updateNowPlaying, UPDATE_INTERVAL);
       },
       error: function(xhr, status, err){

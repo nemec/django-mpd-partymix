@@ -3,6 +3,7 @@
 {% block header %}
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}style/mpd-juke.css" />
   <script type="text/javascript" src="{{ STATIC_URL }}scripts/juke-query.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery-floatanim.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -13,9 +14,10 @@
   </script>
 
   <div id="juke">
+    <div><b class="nowplaying">Now Playing: </b><b class="nextsong">Next Up: </b></div>
     {% if nowplaying %}
-      <div id="nowplaying">
-        <div><b>Now Playing: </b></div><p>
+      <div class="ticker">
+        <p class="nowplaying">
           <span class="title">{{nowplaying.title}}</span>
           {% if nowplaying.album %}
             by <span class="artist">{{nowplaying.artist}}</span>
@@ -24,11 +26,9 @@
             on <span class="album">{{nowplaying.album}}</span>
           {% endif %}
         </p>
-      </div>
-    {% endif %}
-    {% if nextsong %}
-      <div id="nextsong">
-        <div><b>Next Up: </b></div><p>
+      {% endif %}
+      {% if nextsong %}
+        <p class="nextsong">
           <span class="title">{{nextsong.title}}</span>
           {% if nextsong.album %}
             by <span class="artist">{{nextsong.artist}}</span>

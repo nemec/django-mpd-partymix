@@ -7,15 +7,24 @@
   margin-top: 3em;
 }
 
-#juke #nowplaying {
+#juke div{
+  margin: 0;
+  padding: 0;
+}
+
+#juke .ticker {
+  height: 50px;
+}
+
+#juke .nowplaying {
   float: left;
   width: 48%;
   overflow: hidden;
 }
 
-#juke #nextsong {
+#juke .nextsong {
   float: right;
-  width: 48%;
+  width: 42%;
   overflow: hidden;
 }
 
@@ -24,12 +33,10 @@
   color: #1B112C;
 }
 
-#juke div p {
+#juke p {
   font-size: large;
   color: #493B4C;
-  text-indent: -2em;
   margin: 0;
-  margin-left: 2em;
 }
 
 #search-list {
