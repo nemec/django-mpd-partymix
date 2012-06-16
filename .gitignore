@@ -1,6 +1,7 @@
 *~
 *.pyc
 *.pyo
+static/
 build/
 dist/
 settings/local.py
